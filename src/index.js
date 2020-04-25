@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./components/App/App.js";
 import registerServiceWorker from "./registerServiceWorker";
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import axios from "axios";
+import { takeEvery, put } from "redux-saga/effects";
 // Provider allows us to use redux within our react app
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 // Import saga middleware
 import createSagaMiddleware from "redux-saga";
 
+// Function to route all movies
 function* getMovie(action) {
   try {
     let response = yield axios.get("/api/movies");
@@ -22,9 +25,22 @@ function* getMovie(action) {
   }
 }
 
+function* updateMovie(action) {
+  try {
+    let response = yield axios.put(`/api/movies/+{action.payload.id}`);
+    yield put({
+      type: "GET_MOVIES",
+      payload: response.data,
+    });
+  } catch (error) {
+    console.log("Error in updateMovie saga:", error);
+  }
+}
+
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery("GET_MOVIES", getMovie);
+  yield takeEvery("UPDATE_DETAILS", updateMovie);
 }
 
 // Create sagaMiddleware
