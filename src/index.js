@@ -33,7 +33,19 @@ function* updateMovie(action) {
       payload: response.data,
     });
   } catch (error) {
-    console.log("Error in updateMovie saga:", error);
+    console.log("Error in updateMovie saga: ", error);
+  }
+}
+
+function* movieDetail(action) {
+  try {
+    let response = yield axios.get(`/api/movies/${action.payload}`);
+    yield put({
+      type: "GET_DETAILS",
+      payload: response.data,
+    });
+  } catch (error) {
+    console.log("Error in movieDetail saga: ", error);
   }
 }
 
@@ -41,6 +53,7 @@ function* updateMovie(action) {
 function* rootSaga() {
   yield takeEvery("GET_MOVIES", getMovie);
   yield takeEvery("UPDATE_DETAILS", updateMovie);
+  yield takeEvery("GET_DETAILS", movieDetail);
 }
 
 // Create sagaMiddleware
