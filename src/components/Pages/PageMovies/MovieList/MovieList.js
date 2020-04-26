@@ -5,7 +5,7 @@ import MovieItem from "../MovieItem/MovieItem.js";
 class MovieList extends Component {
   componentDidMount() {
     console.log(this.props.store.movies.map);
-    this.props.dispatch({ type: "GET_MOVIES " });
+    this.props.dispatch({ type: "GET_MOVIES" });
   }
   render() {
     return (
