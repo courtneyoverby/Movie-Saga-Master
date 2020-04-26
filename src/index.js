@@ -28,7 +28,7 @@ function* getMovies(action) {
 function* updateMovie(action) {
   try {
     let response = yield axios.put(
-      `/api/movies/+{action.payload.id}`,
+      `/api/movie/+{action.payload.id}`,
       action.payload
     );
     yield put({
