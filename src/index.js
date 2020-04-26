@@ -12,7 +12,7 @@ import logger from "redux-logger";
 // Import saga middleware
 import createSagaMiddleware from "redux-saga";
 
-// Function to route all movies
+// Generator functions for updating and getting movies.
 function* getMovies(action) {
   try {
     let response = yield axios.get("/api/movie");
@@ -23,11 +23,14 @@ function* getMovies(action) {
   } catch (err) {
     console.warn(err);
   }
+}
 
-// Put function to dispatch
 function* updateMovie(action) {
   try {
-    let response = yield axios.put(`/api/movies/+{action.payload.id}`, action.payload);
+    let response = yield axios.put(
+      `/api/movies/+{action.payload.id}`,
+      action.payload
+    );
     yield put({
       type: "GET_GENRES",
       payload: response.data,
@@ -37,7 +40,7 @@ function* updateMovie(action) {
   }
 }
 
-// Get function to obtain details
+// Generator function for getting genres.
 function* getGenres(action) {
   try {
     let response = yield axios.get("/api/movie/genre");

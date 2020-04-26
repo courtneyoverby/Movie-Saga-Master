@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import { HashRouter as Router, Route } from "react-router-dom";
 
-import PageMovies from "../PageMovies/PageMovies";
-import PageDetails from "../PageDetails/PageDetails";
-import PageEdit from "../PageEdit/PageEdit";
+import PageMovies from "../Pages/PageMovies/PageMovies.js";
+import PageDetails from "../Pages/PageDetails/PageDetails.js";
+import PageEdit from "../Pages/PageEdit/PageEdit.js";
 
 class App extends Component {
   render() {
@@ -26,4 +26,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default App;
