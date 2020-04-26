@@ -13,18 +13,25 @@ import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
 // Function to route all movies
-function* getMovie(action) {
+function* getItems(action) {
   try {
     let response = yield axios.get("/api/movies");
     yield put({
       type: "SET_MOVIES",
       payload: response.data,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.warn(err);
+  }
+  try {
+    let response = yield axios.get("/api/genres");
+    yield put({ type: "SET_GENRES", payload: response.data });
+  } catch (err) {
+    console.warn(err);
   }
 }
 
+// Put function to dispatch
 function* updateMovie(action) {
   try {
     let response = yield axios.put(`/api/movies/+{action.payload.id}`);
@@ -37,7 +44,8 @@ function* updateMovie(action) {
   }
 }
 
-function* movieDetail(action) {
+// Get function to obtain details
+function* movieDetails(action) {
   try {
     let response = yield axios.get(`/api/movies/${action.payload}`);
     yield put({
@@ -45,15 +53,15 @@ function* movieDetail(action) {
       payload: response.data,
     });
   } catch (error) {
-    console.log("Error in movieDetail saga: ", error);
+    console.log("Error in movieDetails saga: ", error);
   }
 }
 
 // Create the rootSaga generator function
 function* rootSaga() {
-  yield takeEvery("GET_MOVIES", getMovie);
+  yield takeEvery("GET_MOVIES", getItems);
   yield takeEvery("UPDATE_DETAILS", updateMovie);
-  yield takeEvery("GET_DETAILS", movieDetail);
+  yield takeEvery("GET_DETAILS", movieDetails);
 }
 
 // Create sagaMiddleware
