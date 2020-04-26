@@ -3,20 +3,23 @@ import "./App.css";
 import { connect } from "react-redux";
 import { HashRouter as Router, Route } from "react-router-dom";
 
-import PageHome from "../PageHome/PageHome";
+import PageMovies from "../PageMovies/PageMovies";
 import PageDetails from "../PageDetails/PageDetails";
 import PageEdit from "../PageEdit/PageEdit";
 
 class App extends Component {
-  // Renders the entire app on the DOM
-
   render() {
     return (
       <div className="App">
         <Router>
-          <Route exact path="/" component={PageHome} />
+          <header className="appHeader">
+            <h1 className="appTitle">Movie Sagas</h1>
+          </header>
+          <br />
+
+          <Route exact path="/" component={PageMovies} />
           <Route exact path="/details/:id" component={PageDetails} />
-          <Route exact path="/details/:id/edit" component={PageEdit} />
+          <Route exact path="/edit/:id" component={PageEdit} />
         </Router>
       </div>
     );
