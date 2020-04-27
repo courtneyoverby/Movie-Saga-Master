@@ -9,11 +9,11 @@ class MovieItem extends Component {
     return (
       <div onClick={this.itemDetails}>
         <ul>
-          <img src={`/images/${this.props.movie.poster}`} />
-          {/* onClick={this.onClick(this.props.movie.id)}
-            {/* image={this.props.movie.poster} */}
-          {/* alt="Movie Poster" */}
-          {/* </img> */} */}
+          <img
+            alt="Movie Poster"
+            onClick={this.onClick(this.props.movie.id)}
+            src={`/${this.props.movie.poster}`}
+          />
           <h3>{this.props.movie.title}</h3>
           <span>{this.props.movie.description}</span>
         </ul>

@@ -14,7 +14,18 @@ class PageDetails extends Component {
     this.props.history.push("/edit/${this.props.match.params.id}");
   };
   render() {
-    return <div></div>;
+    const id = Number(this.props.match.params.id);
+    const filteredMovie = this.props.store.movies.filter((movie) => {
+      return movie.id === id;
+    });
+    const filteredGenre = this.props.store.movies.filter((genre) => {
+      return genre.id === id;
+    });
+    return (
+      <div>
+        <button onClick={this.backOnClick}>Back To Movies</button>
+      </div>
+    );
   }
 }
 
