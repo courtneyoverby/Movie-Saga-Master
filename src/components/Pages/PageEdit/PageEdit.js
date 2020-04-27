@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class PageEdit extends Component {
   render() {
-    return <div></div>;
+    return;
   }
 }
+const mapStoreToProps = (store) => ({ store });
 
-export default PageEdit;
+export default connect(mapStoreToProps)(PageEdit);
