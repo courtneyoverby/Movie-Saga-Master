@@ -24,6 +24,7 @@ class PageDetails extends Component {
     return (
       <div>
         <button onClick={this.backOnClick}>Back To Movies</button>
+        <button onClick={this.editOnClick}>Edit This Movie</button>
       </div>
     );
   }
