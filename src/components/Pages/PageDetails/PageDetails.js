@@ -25,6 +25,34 @@ class PageDetails extends Component {
       <div>
         <button onClick={this.backOnClick}>Back To Movies</button>
         <button onClick={this.editOnClick}>Edit This Movie</button>
+        <div>
+          {filteredMovie.map((movie) => {
+            return (
+              <div key={movie.id}>
+                <h2>{movie.title}</h2>
+                <p>{movie.description}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div>
+          <h3>Genres</h3>
+          {filteredGenre.map((genre) => {
+            return (
+              <div key={genre.id}>
+                <div>
+                  {/* {genre.movie_genres.map((type, index) => {
+                    return (
+                      <div key={index}>
+                        <i>{type}</i>
+                      </div>
+                    );
+                  })} */}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
